@@ -1,0 +1,10 @@
+# Add requirements only needed for your unittests and during development here.
+# They will be installed automatically when running `python setup.py test`.
+coverage-badge
+data-science-types 
+pytest
+pytest-black
+pytest-cov
+pytest-isort
+pytest-mypy
+sqlalchemy-stubs
