@@ -1,6 +1,5 @@
-export IMAGE_NAME := vessellog-io
-export CONTAINER_NAME_APP := vessellog_io
-export CONTAINER_NAME_DOCS := vessellog_io_docs
+export IMAGE_NAME := breakwater
+export CONTAINER_NAME_APP := breakwater
 
 .PHONY: build up down test-up test docs log help check-local-env
 
