@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from tabulate import tabulate
+#from tabulate import tabulate
 from pandas import read_excel, read_csv
 
 from .utils.exceptions import InputError, RockGradingError, ArmourUnitsError, user_warning
