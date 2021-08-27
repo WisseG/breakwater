@@ -2,33 +2,36 @@
 Breakwater Design with Python
 """
 
-__version__ = '1.0'
-__author__ = 'S. Winkel'
+__version__ = "v1.0.2d"
+__author__ = "S. Winkel"
+
+from .caisson import Caisson
+from .conditions import LimitState
 
 # import hydraulic conditions
 from .core.battjes import BattjesGroenendijk
 from .core.goda import goda_wave_heights
-from .utils.wave import shoaling_coefficient, dispersion
-from .conditions import LimitState
 
-# import materials
-from .material import RockGrading, Xbloc, XblocPlus, ConcreteArmour
-
-# import breakwaters
-from .design import Configurations
-from .rubble import RubbleMound, ConcreteRubbleMound, RockRubbleMound
-from .caisson import Caisson
+# import the soil
+from .core.soil import Soil
 
 # file loader
-from .design import read_breakwaters
-
-# excel input
-from .material import read_grading, read_units
-from .design import read_configurations
-from .utils.input_generator import generate_excel
+# import breakwaters
+from .design import Configurations, read_breakwaters, read_configurations
 
 # interactive design tool (tkinter app)
 from .interactive import interactive_design
 
-# import the soil
-from .core.soil import Soil
+# excel input
+# import materials
+from .material import (
+    ConcreteArmour,
+    RockGrading,
+    Xbloc,
+    XblocPlus,
+    read_grading,
+    read_units,
+)
+from .rubble import ConcreteRubbleMound, RockRubbleMound, RubbleMound
+from .utils.input_generator import generate_excel
+from .utils.wave import dispersion, shoaling_coefficient
