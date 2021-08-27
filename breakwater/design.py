@@ -1,20 +1,24 @@
-import numpy as np
-import pandas as pd
 import os
 import pickle
 from warnings import catch_warnings
-from tabulate import tabulate
 
-from .utils._kwarg_validator import _process_kwargs, _RM_vkwargs, _C_vkwargs
-from .utils._design_explorer import _DE_params
-from .utils.exceptions import RockGradingError, ArmourUnitsError, InputError, user_warning, NotSupportedError
-from .utils._progress import ProgressBar
-from .utils._excel_utils import _convert_string
-from .utils.cost import _process_cost, cost_influence
+import numpy as np
+import pandas as pd
+
 from .caisson import Caisson
 from .conditions import LimitState
 from .material import read_grading, read_units
-from .rubble import RockRubbleMound, ConcreteRubbleMound
+from .rubble import ConcreteRubbleMound, RockRubbleMound
+from .utils._design_explorer import _DE_params
+from .utils._excel_utils import _convert_string
+from .utils._kwarg_validator import _C_vkwargs, _process_kwargs, _RM_vkwargs
+from .utils._progress import ProgressBar
+from .utils.cost import _process_cost, cost_influence
+from .utils.exceptions import (ArmourUnitsError, InputError, NotSupportedError,
+                               RockGradingError, user_warning)
+
+#from tabulate import tabulate
+
 
 
 def read_configurations(

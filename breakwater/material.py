@@ -1,9 +1,10 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 #from tabulate import tabulate
-from pandas import read_excel, read_csv
+from pandas import read_csv, read_excel
 
-from .utils.exceptions import InputError, RockGradingError, ArmourUnitsError, user_warning
+from .utils.exceptions import (ArmourUnitsError, InputError, RockGradingError,
+                               user_warning)
 
 
 def read_grading(filepath, rho=2650, sheet_name=0):

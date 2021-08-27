@@ -1,13 +1,17 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from tabulate import tabulate
+import numpy as np
 
-from .utils.exceptions import InputError, user_warning, NotSupportedError, RockGradingError
 from .core.goda import Goda
 from .core.overtopping import vertical
-from .core.toe import toe_berm_stability
-from .core.substructure import underlayer, _supported_armour_layers, layer_coefficient
 from .core.scour import scour_protection
+from .core.substructure import (_supported_armour_layers, layer_coefficient,
+                                underlayer)
+from .core.toe import toe_berm_stability
+from .utils.exceptions import (InputError, NotSupportedError, RockGradingError,
+                               user_warning)
+
+#from tabulate import tabulate
+
 
 
 class Caisson:
