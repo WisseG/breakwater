@@ -4,6 +4,7 @@ from warnings import catch_warnings
 
 import numpy as np
 import pandas as pd
+import termtables as tt
 
 from .caisson import Caisson
 from .conditions import LimitState

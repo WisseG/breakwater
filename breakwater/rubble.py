@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import termtables as tt
 
 from .core import substructure
 from .core.bishop import Bishop
@@ -7,12 +8,8 @@ from .core.overtopping import rubble_mound
 from .core.scour import scour_protection
 from .core.stability import hudson, vandermeer
 from .core.toe import toe_stability
-from .utils.exceptions import (
-    InputError,
-    NotSupportedError,
-    RockGradingError,
-    user_warning,
-)
+from .utils.exceptions import (InputError, NotSupportedError, RockGradingError,
+                               user_warning)
 
 # from tabulate import tabulate
 
@@ -1247,9 +1244,9 @@ class RubbleMound:
                 if isinstance(table[i][index_state], int):
                     table[i][index_state] = self._LimitStates[state].label
 
-            print(
-                tabulate(table, headers, tablefmt="github", floatfmt=(f".{decimals}f"))
-            )
+            
+                tt.print(table, header=headers, style=tt.styles.markdown, padding=(0, 1))
+            
             print("")
             print(
                 f"Rc = {np.round(self.Rc, decimals=decimals)} m, designed "
@@ -1877,10 +1874,10 @@ class RockRubbleMound(RubbleMound):
             table_toe[1].append("NO")
 
         # print the table
-        print(tabulate(table_vdm, headers, tablefmt="github"))
+        tt.print(table_vdm, header=headers, style=tt.styles.markdown, padding=(0, 1))
         print()
         print(" Range of validity of parameters in toe formula")
-        print(tabulate(table_toe, headers, tablefmt="github"))
+        tt.print(table_toe, header=headers, style=tt.styles.markdown, padding=(0, 1))
 
 
 class ConcreteRubbleMound(RubbleMound):

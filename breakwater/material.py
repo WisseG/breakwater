@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 #from tabulate import tabulate
+import termtables as tt
 from pandas import read_csv, read_excel
 
 from .utils.exceptions import (ArmourUnitsError, InputError, RockGradingError,

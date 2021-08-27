@@ -2,7 +2,7 @@
 Breakwater Design with Python
 """
 
-__version__ = "v1.0.2e"
+__version__ = "v1.0.2f"
 __author__ = "S. Winkel"
 
 from .caisson import Caisson
