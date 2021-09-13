@@ -1,32 +1,41 @@
 import breakwater as bw
 from Cubipod import Cubipod
-
+from Wave_rose import Waverose
 """
 How to use the C02 Footprint functions for the Revetment at Energy Island
-    Hydraulic conditions still need to be updated -> as well the gradings will probably be (Cupipod)
 """
-Hm0_315, Tp_315, Tm_315 = 14.2, 17.6, 13.5  # 1/10.000 yrs from 315 degrees North
-Hm0_270, Tp_270, Tm_270 = 13.9, 16.4, 12.3  # 1/10.000 yrs from 270 degrees North
-Hm0_225, Tp_225, Tm_225 = 12.7, 14.4, 11.1  # 1/10.000 yrs from 225 degrees North
 
-battjes = bw.BattjesGroenendijk(Hm0=Hm0_225, h=27.71, slope_foreshore=(1, 100))
+#The standard grading for Energy Island
+grading_EI = {
+    "LMA_60/300": {"M50": [120, 190], "NLL": 60, "NUL": 300},
+    "HMA_300/1000": {"M50": [540, 690], "NLL": 300, "NUL": 1000},
+    "HMA_1000/3000": {"M50": [1700, 2100], "NLL": 1000, "NUL": 3000},
+    "HMA_3000/6000": {"M50": [4200, 4800], "NLL": 3000, "NUL": 6000},
+}
+
+#Wave conditions for a certain direciton
+condition1 = Waverose()
+Hm0, Tp, Tm = condition1.wave_direction(direction= '090')
+
+battjes = bw.BattjesGroenendijk(Hm0= Hm0, h=27.71, slope_foreshore=(1, 100))
 H2_per = battjes.get_Hp(0.02)
 
 # define a limit state with hydraulic parameters, and the allowed damage
 ULS = bw.LimitState(
     h=27.71,
-    Hm0=Hm0_225,
+    Hm0=Hm0,
     H2_per=H2_per,
-    Tp=Tp_225,
-    Tm=Tm_225,
-    T_m_min_1=15,
+    Tp=Tp,
+    Tm=Tm,
+    T_m_min_1= (Tp + Tm) / 2,
     Sd=5,
     Nod=4,
     q=10,
     label="ULS",
 )
 
-NEN = bw.RockGrading(rho=2650)  # standard gradings
+
+NEN = bw.RockGrading(rho=2650, grading= grading_EI)  # standard gradings
 
 cubipod = Cubipod()
 
@@ -49,16 +58,10 @@ configs = bw.Configurations(
 material_cost = {
     "type": "Material",
     "price": {
-        "LMA_5/40": 5000,
-        "LMA_10/60": 6000,
-        "LMA_40/200": 70000,
-        "LMA_15/300": 8000,
         "LMA_60/300": 9000,
         "HMA_300/1000": 10000,
         "HMA_1000/3000": 11000,
         "HMA_3000/6000": 12000,
-        "HMA_6000/10000": 13000,
-        "HMA_10000/15000": 14000,
     },
     "core_price": 400,
     "unit_price": 500,
@@ -72,16 +75,10 @@ material_cost = {
 c02_cost = {
     "type": "C02",
     "price": {
-        "LMA_5/40": 10,
-        "LMA_10/60": 20,
-        "LMA_40/200": 30,
-        "LMA_15/300": 40,
         "LMA_60/300": 50,
         "HMA_300/1000": 60,
         "HMA_1000/3000": 70,
         "HMA_3000/6000": 80,
-        "HMA_6000/10000": 90,
-        "HMA_10000/15000": 100,
     },
     "core_price": 100,
     "unit_price": 300,
