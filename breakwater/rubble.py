@@ -1173,8 +1173,8 @@ class RubbleMound:
                 elif (
                     self._input_arguments["armour"] is not "Rock" and layer is "armour"
                 ):
-                    # concrete armour units
-                    price = area * unit_price
+
+                        price = area * unit_price
 
                 else:
                     # layer of the breakwater
@@ -2493,6 +2493,7 @@ class ConcreteRubbleMound(RubbleMound):
             if no pricing is included in the given RockGrading
         """
         # compute the cost of the concept
+        print(self.structure['Grading'].get)
         cost = self._cost(
             type = type,
             *variants,
@@ -2652,6 +2653,8 @@ class ConcreteRubbleMoundRevetment(RubbleMound):
         # compute relative buoyant density
         self.id = id
         self.variantIDs = ["a", "b", "c", "d"]
+
+        self.rho = ArmourUnit.rho
 
         # compute relative buoyant density
         delta_armour = (ArmourUnit.rho - rho_w) / rho_w

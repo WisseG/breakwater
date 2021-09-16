@@ -1080,7 +1080,6 @@ class Configurations:
         # iterate over the generated concepts
         for i, row in self.df.iterrows():
             # check if concept is not None
-            #print(row.concept)
             if row.concept is None:
                 # not a valid concept
                 computed_cost.append(None) #Wat gebeurt hier. Dit zorgt voor een error bij cost_influence
