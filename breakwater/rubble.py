@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from tabulate import tabulate
 
-
+from breakwater.equipment.Equip_functions import install_set_true
 from breakwater.equipment.equipment import Truck, Vessel, Excavator, Crane, Barge, PlateFeeder
 from .core import substructure
 from .core.bishop import Bishop
@@ -1397,46 +1397,8 @@ class RubbleMound:
                                         key=lambda k: len(set(equipment_layers[k]).difference(set(installed0))),
                                         reverse= True)
 
-            equipment2 = equipment_layers.copy()
-
-            installed = equipment_layers[equip].copy()
-
-            equips_dict = {}
-            equips_dict[equip] = installed.copy()
-            equips_lst = [equip]
-
-            # can't install a single layer
-            if len(installed) != 0:
-
-                while bool(equipment2) and i < len(equipment):
-                    while list(installed) != list(all_sections) and i < len(equipment):
-
-                        rest_equip = sorted(equipment2.keys(),
-                                        key=lambda k: len(set(equipment2[k]).difference(set(installed))),
-                                        reverse= True)
-
-                        most_new = rest_equip[0]
-
-                        newlayers = [l for l in equipment_layers[most_new] if l not in installed]
-                        installed.extend(newlayers)
-                        equips_dict[rest_equip[0]] = newlayers
-                        equips_lst.append(rest_equip[0])
-                        installed = sorted(installed)
-                        i += 1
-
-                    if list(installed) == list(all_sections):
-                        equipment2.pop(most_new0[0])
-                        equips_lst = sorted(equips_lst)
-                        most_new0.pop(0)
-                        installed = installed0
-                        print('k', most_new0)
-
-                        if equips_lst not in combinations_dict:
-                            combinations_dict.append(equips_dict)
-                            combinations_lst.append(equips_lst)
-
-                    all_equips_dict[f'{equips_lst}'] = equips_dict
-
+            most_new0.remove(equip)
+            
         cost_combinations = {}
 
         for combi in combinations_dict:
