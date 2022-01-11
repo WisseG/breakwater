@@ -18,6 +18,9 @@ from .caisson import Caisson
 # import Equipment
 from breakwater.equipment.equipment import Truck, Vessel, Crane, Excavator, Barge, PlateFeeder, HITACHI_EX1900, Caterpillar345, HITACHI_EX1200
 
+# import Probabilistics
+from breakwater.Probabilistics.probabilistics import MonteCarlo
+
 # import structure 3D
 from breakwater.shape_3D.Limitstate_3D import LimitState_3D
 from breakwater.shape_3D.Battjes_3D import BattjesGroenendijk_3D
