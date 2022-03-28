@@ -10,7 +10,7 @@ def _process_cost(structure, type, cost, Grading, validate=True):
     ----------
     structure : {'RRM', 'CRM', 'RC', 'CC'}
         structure for which the cost must be verified
-    type : {'Material', 'C02'}
+    type : {'Material', 'CO2'}
         Type of cost to process
     Grading : :py:class:`RockGrading`
         rock grading
@@ -26,11 +26,11 @@ def _process_cost(structure, type, cost, Grading, validate=True):
 
     if type == 'Material':
         dictvar = 'material_price'
-    elif type == 'C02':
-        dictvar = 'c02_price'
+    elif type == 'CO2':
+        dictvar = 'co2_price'
 
     if dictvar == None:
-        raise KeyError('Give Material or C02 as input for the argument "type"')
+        raise KeyError('Give Material or CO2 as input for the argument "type"')
 
     if cost is not None:
         # cost have been added
