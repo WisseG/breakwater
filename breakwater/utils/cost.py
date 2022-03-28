@@ -151,7 +151,7 @@ def cost_influence(type, lines):
         if type == 'Material':
             plt.plot(x, data['material_cost'], label=label)
         if type == 'CO2':
-            plt.plot(x, data['c02_cost'], label=label)
+            plt.plot(x, data['co2_cost'], label=label)
 
     # style figure
 
